@@ -1,5 +1,36 @@
-# FootprintParticle
+# Footprint Particle Returns
 
-A simple Minecraft mod that adds footprint for mobs (and players). Highly configurable designed for modpacks.
+A Minecraft mod that adds footprint particles when walking on certain blocks.
 
-[![Download from Curseforge](https://cf.way2muchnoise.eu/full_832070_downloads%20on%20Curseforge.svg?badge_style=flat)](https://www.curseforge.com/minecraft/mc-mods/footprintparticle)  [![Download From Modrinth](https://img.shields.io/modrinth/dt/footprintparticle?color=4&label=Download%20from%20Modrinth&style=flat-square&logo=modrinth)](https://modrinth.com/mod/footprintparticle)  [![Download from MCMOD.cn](https://img.shields.io/badge/Download%20from%20MCMOD.cn-Zh-green?style=flat-square)](https://www.mcmod.cn/class/9454.html)
+## Version Information
+
+- **Minecraft Version**: 1.21.1
+- **Mod Loader**: NeoForge 21.1.77
+
+## Features
+
+- Footprint particles when walking on dirt, grass, snow, and other soft blocks
+- Watermark particles for water interactions
+- Snow dust particles for snow block interactions  
+- Water splash particles for water movement
+- Configurable particle behavior per entity type
+- Custom particle textures per entity type
+- **Entity Scaling Integration**: Optional support for Pehkui and Random Mob Sizes (affects particle size)
+
+## Optional Dependencies
+
+- **Pehkui**: Provides entity scaling support. When loaded, footprint particles will scale with the entity's size.
+- **Random Mob Sizes**: Alternative entity scaling mod. When loaded, footprint particles will scale with randomized mob sizes.
+
+> **Note**: If both Pehkui and Random Mob Sizes are installed, Random Mob Sizes takes priority as it uses vanilla scaling methods.
+
+
+## Porting Notes
+- This mod was originally created by Rivmun and can be found here under GPL license: https://github.com/Rivmun/FootprintParticle
+
+
+## License
+
+GPL 3.0
+
+

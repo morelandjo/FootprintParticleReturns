@@ -1,0 +1,122 @@
+# Gradle
+.gradle/
+build/
+out/
+classes/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+.eclipse
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# NetBeans
+nbproject/
+nbbuild/
+nbdist/
+nbactions.xml
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Minecraft Development
+run/
+logs/
+crash-reports/
+screenshots/
+saves/
+config/
+mods/
+resourcepacks/
+shaderpacks/
+options.txt
+optionsof.txt
+usernamecache.json
+usercache.json
+servers.dat
+realms_persistence.json
+
+# Fabric/Forge Development
+.fabric/
+remappedSrc/
+minecraft_assets.properties
+
+# NeoForge Specific
+.neoforge/
+.mixin.out/
+
+# Generated Sources
+src/generated/
+
+# Temporary Files
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+
+# Dependency Directories
+libs/
+dependencies/
+
+# Log Files
+*.log
+*.log.*
+
+# Archive Files
+*.zip
+*.tar.gz
+*.rar
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Package Files
+node_modules/
+*.tgz
+*.tar.gz
+
+# Build Artifacts
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# Test Results
+test-results/
+test-reports/
+
+# JVM Crash Logs
+hs_err_pid*
+replay_pid*
+
+# Profiler Output
+*.hprof
+
+# Maven (if mixed with Gradle)
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
