@@ -228,16 +228,12 @@ public class FootprintEventHandler {
         
         double px = position[0];
         double py = position[1];
-        double pz = position[2];
-        
-        // Check if footprint can be generated at this position
+        double pz = position[2];        // Check if footprint can be generated at this position
         BlockPos pos = new BlockPos((int)px, (int)py, (int)pz);
-        boolean canGen = isPrintCanGen(entity, pos) && entity.level().getBlockState(pos).isSolidRender(entity.level(), pos);
-        
-        if (!canGen) {
+        boolean canGen = isPrintCanGen(entity, pos) && entity.level().getBlockState(pos).isCollisionShapeFullBlock(entity.level(), pos);        if (!canGen) {
             pos = new BlockPos((int)px, (int)py - 1, (int)pz);
             canGen = isPrintCanGen(entity, pos) && 
-                     entity.level().getBlockState(pos).isSolidRender(entity.level(), pos) && 
+                     entity.level().getBlockState(pos).isCollisionShapeFullBlock(entity.level(), pos) && 
                      entity.level().getBlockState(pos).getCollisionShape(entity.level(), pos).equals(Shapes.block());
         } else {
             // Apply block-specific height adjustments
