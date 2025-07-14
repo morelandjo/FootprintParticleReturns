@@ -1,7 +1,7 @@
 package com.rimo.footprintparticle;
 
 import com.rimo.footprintparticle.config.FPPConfig;
-import com.rimo.footprintparticle.config.ModConfigScreenFactory;
+// import com.rimo.footprintparticle.config.ModConfigScreenFactory; // Disabled until Cloth Config warnings resolved
 import com.rimo.footprintparticle.particle.*;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.Registries;
@@ -36,27 +36,28 @@ public class FootprintParticleReturns {
     
     public FootprintParticleReturns(IEventBus modEventBus, ModContainer modContainer) {
         PARTICLES.register(modEventBus);
-          // Register configuration screen for NeoForge
+        
+        // Register mod bus events manually to avoid annotation issues
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            modContainer.registerExtensionPoint(net.neoforged.neoforge.client.gui.IConfigScreenFactory.class, 
-                new ModConfigScreenFactory());
+            modEventBus.addListener(this::onClientSetup);
+            modEventBus.addListener(this::registerParticleProviders);
+            
+            // TODO: Re-enable configuration screen when Cloth Config @OnlyIn warnings are resolved
+            // modContainer.registerExtensionPoint(net.neoforged.neoforge.client.gui.IConfigScreenFactory.class, 
+            //     new ModConfigScreenFactory());
         }
         
-        LOGGER.info("Footprint Particle Returns mod initialized");    }
+        LOGGER.info("Footprint Particle Returns mod initialized");
+    }
     
-    @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
-    public static class ClientModEvents {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event) {
-            LOGGER.info("Footprint Particle Returns client setup");
-        }
-        
-        @SubscribeEvent
-        public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
-            event.registerSpriteSet(FOOTPRINT.get(), FootprintParticle.DefaultFactory::new);
-            event.registerSpriteSet(WATERMARK.get(), WatermarkParticle.DefaultFactory::new);
-            event.registerSpriteSet(SNOWDUST.get(), SnowDustParticle.DefaultFactory::new);
-            event.registerSpriteSet(WATERSPLASH.get(), WaterSplashParticle.DefaultFactory::new);
-        }
+    private void onClientSetup(FMLClientSetupEvent event) {
+        LOGGER.info("Footprint Particle Returns client setup");
+    }
+    
+    private void registerParticleProviders(RegisterParticleProvidersEvent event) {
+        event.registerSpriteSet(FOOTPRINT.get(), FootprintParticle.DefaultFactory::new);
+        event.registerSpriteSet(WATERMARK.get(), WatermarkParticle.DefaultFactory::new);
+        event.registerSpriteSet(SNOWDUST.get(), SnowDustParticle.DefaultFactory::new);
+        event.registerSpriteSet(WATERSPLASH.get(), WaterSplashParticle.DefaultFactory::new);
     }
 }

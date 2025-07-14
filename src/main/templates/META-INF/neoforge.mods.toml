@@ -6,7 +6,7 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the the FML version. This is currently 47.
-loaderVersion="${loader_version_range}" #mandatory (21 is current)
+loaderVersion="[1,)" #mandatory (21 is current)
 # A URL to refer people to when problems occur with this mod
 #issueTrackerURL="http://my.issue.tracker/" #optional
 # The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
@@ -30,10 +30,7 @@ description='''${mod_description}'''
 #credits="" #optional
 # A text field displayed in the mod UI
 authors="${mod_authors}" #optional
-# The description text for the mod (multi line text here) ##mandatory
-#description='''
-#Multi-line description
-#'''
+
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.${mod_id}]] #optional
     # the modid of the dependency
@@ -41,7 +38,7 @@ authors="${mod_authors}" #optional
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="${neo_version_range}" #mandatory
+    versionRange="[${neo_version},)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -53,11 +50,3 @@ authors="${mod_authors}" #optional
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
-# Pehkui - Optional dependency for entity scaling support
-[[dependencies.${mod_id}]]
-    modId="pehkui"
-    type="optional"
-    versionRange="[3.8.0,)"
-    ordering="NONE"
-    side="BOTH"
-

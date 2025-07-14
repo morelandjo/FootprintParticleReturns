@@ -27,7 +27,7 @@ import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import java.util.HashMap;
 import java.util.Map;
 
-@EventBusSubscriber(modid = FootprintParticleReturns.MOD_ID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = FootprintParticleReturns.MOD_ID)
 public class FootprintEventHandler {
     
     // Entity data storage for timers and states
