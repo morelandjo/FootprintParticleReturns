@@ -1,6 +1,7 @@
 package com.rimo.footprintparticle;
 
 import com.rimo.footprintparticle.config.FPPConfig;
+import com.rimo.footprintparticle.config.ModConfig;
 // import com.rimo.footprintparticle.config.ModConfigScreenFactory; // Disabled until Cloth Config warnings resolved
 import com.rimo.footprintparticle.particle.*;
 import net.minecraft.core.particles.ParticleType;
@@ -13,6 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.config.ModConfig.Type;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
@@ -36,6 +38,9 @@ public class FootprintParticleReturns {
     
     public FootprintParticleReturns(IEventBus modEventBus, ModContainer modContainer) {
         PARTICLES.register(modEventBus);
+        
+        // Register configuration
+        modContainer.registerConfig(Type.CLIENT, ModConfig.SPEC);
         
         // Register mod bus events manually to avoid annotation issues
         if (FMLEnvironment.dist == Dist.CLIENT) {
