@@ -1,5 +1,7 @@
 package com.rimo.footprintparticle.config;
 
+// DISABLED: Cloth Config is not available for 1.21.7 due to @OnlyIn annotation warnings
+/*
 import com.rimo.footprintparticle.FootprintParticleReturns;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
@@ -224,3 +226,4 @@ public class ClothConfigIntegration {
         }
     }
 }
+*/
