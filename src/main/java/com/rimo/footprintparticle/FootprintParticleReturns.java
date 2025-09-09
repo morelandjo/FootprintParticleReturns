@@ -1,6 +1,7 @@
 package com.rimo.footprintparticle;
 
 import com.rimo.footprintparticle.config.FPPConfig;
+import com.rimo.footprintparticle.config.ModConfig;
 import com.rimo.footprintparticle.config.ModConfigScreenFactory;
 import com.rimo.footprintparticle.particle.*;
 import net.minecraft.core.particles.ParticleType;
@@ -13,6 +14,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
+import net.neoforged.fml.config.ModConfig.Type;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
@@ -36,13 +38,18 @@ public class FootprintParticleReturns {
     
     public FootprintParticleReturns(IEventBus modEventBus, ModContainer modContainer) {
         PARTICLES.register(modEventBus);
-          // Register configuration screen for NeoForge
+        
+        // Register configuration
+        modContainer.registerConfig(Type.CLIENT, ModConfig.SPEC);
+        
+        // Register configuration screen for NeoForge
         if (FMLEnvironment.dist == Dist.CLIENT) {
             modContainer.registerExtensionPoint(net.neoforged.neoforge.client.gui.IConfigScreenFactory.class, 
                 new ModConfigScreenFactory());
         }
         
-        LOGGER.info("Footprint Particle Returns mod initialized");    }
+        LOGGER.info("Footprint Particle Returns mod initialized");
+    }
     
     @EventBusSubscriber(modid = MOD_ID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
