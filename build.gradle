@@ -112,8 +112,8 @@ dependencies {
     
     // Random Mob Sizes - Optional dependency for entity scaling support
     compileOnly "curse.maven:random-mob-sizes-555230:5788833"
-      // Cloth Config - Required dependency for configuration GUI
-    implementation "curse.maven:cloth-config-348521:5987045"
+    // Cloth Config - Required dependency for configuration GUI
+    implementation "curse.maven:cloth-config-348521:6351757"
     
     
 }
