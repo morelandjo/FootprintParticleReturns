@@ -14,8 +14,8 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.vehicle.AbstractMinecart;
-import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.entity.vehicle.minecart.AbstractMinecart;
+import net.minecraft.world.entity.vehicle.boat.Boat;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -309,7 +309,7 @@ public class FootprintEventHandler {
             for (String str : FPPClient.CONFIG.getBlockHeight()) {
                 String[] str2 = str.split(",");
                 if (str2[0].charAt(0) == '#') {
-                    for (TagKey<Block> tag : block.getTags().toList()) {
+                    for (TagKey<Block> tag : block.typeHolder().tags().toList()) {
                         if (str2[0].equals("#" + tag.location().toString())) {
                             py += Float.parseFloat(str2[1]);
                             break;
@@ -392,7 +392,7 @@ public class FootprintEventHandler {
         var canGen = FPPClient.CONFIG.getApplyBlocks().contains(BuiltInRegistries.BLOCK.getKey(block.getBlock()).toString());
         
         if (!canGen) {
-            for (TagKey<Block> tag : block.getTags().toList()) {
+            for (TagKey<Block> tag : block.typeHolder().tags().toList()) {
                 canGen = FPPClient.CONFIG.getApplyBlocks().contains("#" + tag.location().toString());
                 if (canGen) break;
             }
@@ -403,7 +403,7 @@ public class FootprintEventHandler {
                 if (canGen) {
                     canGen = !FPPClient.CONFIG.getExcludedBlocks().contains(BuiltInRegistries.BLOCK.getKey(block.getBlock()).toString());
                     if (canGen) {
-                        for (TagKey<Block> tag : block.getTags().toList()) {
+                        for (TagKey<Block> tag : block.typeHolder().tags().toList()) {
                             canGen = !FPPClient.CONFIG.getExcludedBlocks().contains("#" + tag.location().toString());
                             if (!canGen) break;
                         }

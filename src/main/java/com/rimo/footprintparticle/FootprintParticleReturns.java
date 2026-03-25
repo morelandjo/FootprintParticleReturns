@@ -31,10 +31,10 @@ public class FootprintParticleReturns {
     public static final FPPConfig CONFIG = new FPPConfig();
 
     public static final DeferredRegister<ParticleType<?>> PARTICLES = DeferredRegister.create(Registries.PARTICLE_TYPE, MOD_ID);
-    public static final Supplier<FootprintParticleType> FOOTPRINT = PARTICLES.register("footprint", () -> new FootprintParticleType(false));
-    public static final Supplier<WatermarkParticleType> WATERMARK = PARTICLES.register("watermark", () -> new WatermarkParticleType(false));
-    public static final Supplier<SnowDustParticleType> SNOWDUST = PARTICLES.register("snowdust", () -> new SnowDustParticleType(false));
-    public static final Supplier<WaterSplashParticleType> WATERSPLASH = PARTICLES.register("watersplash", () -> new WaterSplashParticleType(false));
+    public static final Supplier<FootprintParticleType> FOOTPRINT = PARTICLES.register("footprint", registryName -> new FootprintParticleType(false));
+    public static final Supplier<WatermarkParticleType> WATERMARK = PARTICLES.register("watermark", registryName -> new WatermarkParticleType(false));
+    public static final Supplier<SnowDustParticleType> SNOWDUST = PARTICLES.register("snowdust", registryName -> new SnowDustParticleType(false));
+    public static final Supplier<WaterSplashParticleType> WATERSPLASH = PARTICLES.register("watersplash", registryName -> new WaterSplashParticleType(false));
     
     public FootprintParticleReturns(IEventBus modEventBus, ModContainer modContainer) {
         PARTICLES.register(modEventBus);
