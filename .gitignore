@@ -42,6 +42,7 @@ crash-reports/
 screenshots/
 saves/
 config/
+!src/main/java/com/rimo/footprintparticle/config/
 mods/
 resourcepacks/
 shaderpacks/

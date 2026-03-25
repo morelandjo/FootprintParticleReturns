@@ -10,8 +10,8 @@ import net.minecraft.core.particles.SimpleParticleType;
 public class WaterSplashParticle extends WaterDropParticle {
 
 	// Vanilla's splash & rain particle can't apply vy (h), so we made custom one to override it.
-	protected WaterSplashParticle(ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
-		super(clientLevel, d, e, f);
+	protected WaterSplashParticle(ClientLevel clientLevel, double d, double e, double f, double g, double h, double i, SpriteSet spriteProvider) {
+		super(clientLevel, d, e, f, spriteProvider.get(0, 1));
 		this.gravity = 0.04F;
 		this.xd = g;
 		this.yd = 0.1f + h;
@@ -26,10 +26,8 @@ public class WaterSplashParticle extends WaterDropParticle {
 			this.spriteProvider = spriteProvider;
 		}
 
-		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i) {
-			WaterSplashParticle waterSplashParticle = new WaterSplashParticle(clientLevel, d, e, f, g, h, i);
-			waterSplashParticle.setSprite(this.spriteProvider.get(0, 1));
-			return waterSplashParticle;
+		public Particle createParticle(SimpleParticleType simpleParticleType, ClientLevel clientLevel, double d, double e, double f, double g, double h, double i, net.minecraft.util.RandomSource randomSource) {
+			return new WaterSplashParticle(clientLevel, d, e, f, g, h, i, this.spriteProvider);
 		}
 	}
 }

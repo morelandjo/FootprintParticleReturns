@@ -4,12 +4,12 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.particles.SimpleParticleType;
 
-public class SnowDustParticle extends TextureSheetParticle {
+public class SnowDustParticle extends SingleQuadParticle {
     private final SpriteSet spriteProvider;
 
     // Copy from net.minecraft.client.particle.CloudParticle
     protected SnowDustParticle(ClientLevel clientLevel, double x, double y, double z, double vx, double vy, double vz, SpriteSet spriteProvider) {
-        super(clientLevel, x, y, z, 0.0, 0.0, 0.0);
+        super(clientLevel, x, y, z, spriteProvider.get(0, 1));
         this.friction = 0.96F;
         this.spriteProvider = spriteProvider;
         this.xd *= 0.10000000149011612;
@@ -30,8 +30,8 @@ public class SnowDustParticle extends TextureSheetParticle {
     }
 
     @Override
-    public ParticleRenderType getRenderType() {
-        return ParticleRenderType.PARTICLE_SHEET_TRANSLUCENT;
+    public SingleQuadParticle.Layer getLayer() {
+        return SingleQuadParticle.Layer.TRANSLUCENT;
     }    @Override
     public void tick() {
         super.tick();
@@ -46,7 +46,7 @@ public class SnowDustParticle extends TextureSheetParticle {
         }
 
         @Override
-        public Particle createParticle(SimpleParticleType parameters, ClientLevel level, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(SimpleParticleType parameters, ClientLevel level, double x, double y, double z, double velocityX, double velocityY, double velocityZ, net.minecraft.util.RandomSource randomSource) {
             Particle particle = new SnowDustParticle(level, x, y, z, velocityX, velocityY, velocityZ, this.spriteProvider);
             if (parameters instanceof SnowDustParticleType snowdust)
                 particle.scale(snowdust.size);

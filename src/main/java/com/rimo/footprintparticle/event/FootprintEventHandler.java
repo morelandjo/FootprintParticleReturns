@@ -37,7 +37,7 @@ public class FootprintEventHandler {
     private static final Map<Integer, Integer> entityMinecartTimers = new HashMap<>();    @SubscribeEvent
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
         LivingEntity entity = event.getEntity();
-        if (entity.level().isClientSide) {
+        if (entity.level().isClientSide()) {
             generateFootprint(entity);
         }
     }
@@ -45,8 +45,8 @@ public class FootprintEventHandler {
     @SubscribeEvent
     public static void onEntityTick(EntityTickEvent.Post event) {
         Entity entity = event.getEntity();
-        
-        if (!entity.level().isClientSide) {
+
+        if (!entity.level().isClientSide()) {
             return; // Only process on client side
         }
 

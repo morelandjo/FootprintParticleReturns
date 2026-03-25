@@ -22,7 +22,7 @@ public class WatermarkParticle extends FootprintParticle {
 		}
 
 		@Override
-		public Particle createParticle(SimpleParticleType parameters, ClientLevel level, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+		public Particle createParticle(SimpleParticleType parameters, ClientLevel level, double x, double y, double z, double velocityX, double velocityY, double velocityZ, net.minecraft.util.RandomSource randomSource) {
 			return new WatermarkParticle(level, x, y, z, velocityX, velocityY, velocityZ, this.spriteProvider, (WatermarkParticleType) parameters, "watermark");
 		}
 	}

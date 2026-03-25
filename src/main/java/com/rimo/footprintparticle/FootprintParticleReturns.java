@@ -43,7 +43,7 @@ public class FootprintParticleReturns {
         modContainer.registerConfig(Type.CLIENT, ModConfig.SPEC);
         
         // Register mod bus events manually to avoid annotation issues
-        if (FMLEnvironment.dist == Dist.CLIENT) {
+        if (FMLEnvironment.getDist().isClient()) {
             modEventBus.addListener(this::onClientSetup);
             modEventBus.addListener(this::registerParticleProviders);
             
