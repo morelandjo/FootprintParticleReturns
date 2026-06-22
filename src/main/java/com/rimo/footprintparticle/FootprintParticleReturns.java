@@ -2,7 +2,7 @@ package com.rimo.footprintparticle;
 
 import com.rimo.footprintparticle.config.FPPConfig;
 import com.rimo.footprintparticle.config.ModConfig;
-import com.rimo.footprintparticle.config.ModConfigScreenFactory;
+// import com.rimo.footprintparticle.config.ModConfigScreenFactory; // Disabled until Cloth Config warnings resolved
 import com.rimo.footprintparticle.particle.*;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.Registries;
@@ -44,8 +44,8 @@ public class FootprintParticleReturns {
         
         // Register configuration screen for NeoForge
         if (FMLEnvironment.dist == Dist.CLIENT) {
-            modContainer.registerExtensionPoint(net.neoforged.neoforge.client.gui.IConfigScreenFactory.class, 
-                new ModConfigScreenFactory());
+            // modContainer.registerExtensionPoint(net.neoforged.neoforge.client.gui.IConfigScreenFactory.class,
+            //     new ModConfigScreenFactory());
         }
         
         LOGGER.info("Footprint Particle Returns mod initialized");
