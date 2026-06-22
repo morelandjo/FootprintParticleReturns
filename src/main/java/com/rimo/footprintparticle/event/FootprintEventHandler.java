@@ -14,6 +14,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.vehicle.minecart.AbstractMinecart;
 import net.minecraft.world.entity.vehicle.boat.Boat;
@@ -87,7 +88,7 @@ public class FootprintEventHandler {
         // Swim Pop
         if (entity.isSwimming() &&
             (FPPClient.CONFIG.getSwimPopLevel() == 2 ||
-             (FPPClient.CONFIG.getSwimPopLevel() == 1 && entity.getType() == EntityType.PLAYER))) {
+             (FPPClient.CONFIG.getSwimPopLevel() == 1 && entity.getType() == EntityTypes.PLAYER))) {
             float range = Util.getEntityScale(entity);
             entity.level().addParticle(
                 ParticleTypes.BUBBLE,
@@ -191,7 +192,7 @@ public class FootprintEventHandler {
         entityMinecartTimers.put(entityId, timer);
     }    private static void generateFootprint(LivingEntity entity) {
         if (FPPClient.CONFIG.isEnable() == 0 ||
-            (FPPClient.CONFIG.isEnable() == 1 && entity.getType() != EntityType.PLAYER)) {
+            (FPPClient.CONFIG.isEnable() == 1 && entity.getType() != EntityTypes.PLAYER)) {
             return;
         }
         
@@ -278,7 +279,7 @@ public class FootprintEventHandler {
                 // Apply rider-based timer modification
                 int currentTimer = entityTimers.getOrDefault(entity.getId(), 0);
                 if (entity.getFirstPassenger() != null) {
-                    currentTimer = (int) (entity.getFirstPassenger().getType() == EntityType.PLAYER ? 
+                    currentTimer = (int) (entity.getFirstPassenger().getType() == EntityTypes.PLAYER ? 
                         currentTimer * 0.5f : currentTimer * 1.33f);
                 } else {
                     currentTimer = (int) (currentTimer * 1.33f);
@@ -347,7 +348,7 @@ public class FootprintEventHandler {
         // Snow Dust
         if (block.is(Blocks.SNOW) &&
             (FPPClient.CONFIG.getSnowDustLevel() == 2 ||
-             (FPPClient.CONFIG.getSnowDustLevel() == 1 && entity.getType() == EntityType.PLAYER))) {
+             (FPPClient.CONFIG.getSnowDustLevel() == 1 && entity.getType() == EntityTypes.PLAYER))) {
             int i = entity.isSprinting() ? 4 : 2;
             int v = entity.isSprinting() ? 3 : 10;
             while (--i >= 0) {
@@ -384,7 +385,7 @@ public class FootprintEventHandler {
         // Water splash (generates when entity is wet)
         if (wetTimer < FPPClient.CONFIG.getWetDuration() * 20 &&
             (FPPClient.CONFIG.getWaterSplashLevel() == 2 ||
-             (FPPClient.CONFIG.getWaterSplashLevel() == 1 && entity.getType() == EntityType.PLAYER))) {
+             (FPPClient.CONFIG.getWaterSplashLevel() == 1 && entity.getType() == EntityTypes.PLAYER))) {
             float range = Util.getEntityScale(entity);
             int splashCount = (int)((entity.isSprinting() ? 18 : 10) * Math.max((0.7f - (float) wetTimer / (FPPClient.CONFIG.getWetDuration() * 20)), 0));
             int v = entity.isSprinting() ? 3 : 6;

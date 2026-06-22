@@ -3,6 +3,7 @@ package com.rimo.footprintparticle;
 import net.minecraft.client.particle.SpriteSet;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.neoforged.fml.ModList;
 
@@ -107,6 +108,6 @@ public class Util {	private static Method pehkuiGetScaleMethod = null;
 	}
 
 	public static boolean isPlayer(LivingEntity entity) {
-		return entity.getType() == EntityType.PLAYER;
+		return entity.getType() == EntityTypes.PLAYER;
 	}
 }
