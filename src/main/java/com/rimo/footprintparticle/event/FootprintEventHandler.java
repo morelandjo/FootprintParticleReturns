@@ -7,6 +7,7 @@ import com.rimo.footprintparticle.particle.FootprintParticleType;
 import com.rimo.footprintparticle.particle.SnowDustParticleType;
 import com.rimo.footprintparticle.particle.WatermarkParticleType;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.tags.TagKey;
@@ -230,14 +231,28 @@ public class FootprintEventHandler {
         double py = position[1];
         double pz = position[2];        // Check if footprint can be generated at this position
         BlockPos pos = new BlockPos((int)px, (int)py, (int)pz);
-        boolean canGen = isPrintCanGen(entity, pos) && entity.level().getBlockState(pos).isCollisionShapeFullBlock(entity.level(), pos);        if (!canGen) {
-            pos = new BlockPos((int)px, (int)py - 1, (int)pz);
-            canGen = isPrintCanGen(entity, pos) && 
-                     entity.level().getBlockState(pos).isCollisionShapeFullBlock(entity.level(), pos) && 
-                     entity.level().getBlockState(pos).getCollisionShape(entity.level(), pos).equals(Shapes.block());
-        } else {
-            // Apply block-specific height adjustments
+        var stateAtPos = entity.level().getBlockState(pos);
+        boolean canGen;
+
+        if (stateAtPos.is(Blocks.SNOW) && isPrintCanGen(entity, pos)) {
+            // Snow layers sit on top of the block below and are not a full collision block,
+            // so they would otherwise fall through to the block underneath and the footprint
+            // would be drawn sunk into the block below the snow. Place it on the snow surface.
+            double snowTop = stateAtPos.getShape(entity.level(), pos).max(Direction.Axis.Y);
+            py = pos.getY() + snowTop + 0.01f + FPPClient.CONFIG.getPrintHeight();
             py += getBlockHeightOffset(entity, pos);
+            canGen = true;
+        } else {
+            canGen = isPrintCanGen(entity, pos) && stateAtPos.isCollisionShapeFullBlock(entity.level(), pos);
+            if (!canGen) {
+                pos = new BlockPos((int)px, (int)py - 1, (int)pz);
+                canGen = isPrintCanGen(entity, pos) &&
+                         entity.level().getBlockState(pos).isCollisionShapeFullBlock(entity.level(), pos) &&
+                         entity.level().getBlockState(pos).getCollisionShape(entity.level(), pos).equals(Shapes.block());
+            } else {
+                // Apply block-specific height adjustments
+                py += getBlockHeightOffset(entity, pos);
+            }
         }
 
         // Generate particles based on block type and conditions
